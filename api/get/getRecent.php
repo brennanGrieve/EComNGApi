@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
     require(__DIR__.'/getConn.php');
 
     $data = $conn->query("SELECT * FROM Stock ORDER BY DateAdded LIMIT 12");
