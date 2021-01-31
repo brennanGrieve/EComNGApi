@@ -1,7 +1,7 @@
 <?php
-    $target = 'mysql:host=localhost;dbname=EComNGUserData';
-    $user = 'queryPut@localHost';
-    $pass = '453Arc88Synchro';
+    require(__DIR__.'/../../config/config.php');
+    $target = 'mysql:host=localhost;dbname='.$userDB.';';
+    
 
-    $conn = new PDO($target, $user, $pass);
+    $conn = new PDO($target, $postUser, $postPass);
 ?>
