@@ -1,6 +1,5 @@
 <?php   
     require(__DIR__.'/postConn.php');
-
 	$obj = json_decode(file_get_contents('php://input'));	
 	$name = $obj->name;
 	$email = $obj->email;
