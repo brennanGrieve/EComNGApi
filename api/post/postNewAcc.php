@@ -5,9 +5,11 @@
     $newUserName = $obj->user;
     $newPass = $obj->pass;
     $newEmail = $obj->email;
-    $newShippingAddress = $obj->address;
+    $newShipAddr = $obj->shipAddr;
+    $newFName = $obj->fName;
+    $newLName = $obj->lName;
+    $newPhNum = $obj->phNum;
     
     $statement = $conn->prepare('INSERT INTO Redacted VALUES(?, ?, ?, ?)');
     $statement->execute(array($newUserName, $newPass, $newEmail, $newShippingAddress));
-
 ?>
