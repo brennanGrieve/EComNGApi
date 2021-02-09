@@ -1,7 +1,6 @@
 <?php
-    $target = "mysql:host=localhost;dbname=redacted";
-    $user = "redacted";
-    $pass = "redacted";
+    require(__DIR__.'/../../config/config.php');
+    $target = "mysql:host=localhost;dbname=".$stockDB.";";
 
-    $conn = new PDO($target, $user, $pass);
+    $conn = new PDO($target, $getConnUser, $getConnPass);
     ?>
