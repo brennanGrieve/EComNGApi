@@ -16,6 +16,9 @@
     if($userAuth == null){
         echo null;
     }else{
-        
+        $hashedPass = hash("sha512", $pass.$userAuth->salt);
+        if($userAuth->passhash == $hashedPass){
+            //Correct password has been given, send appopriate auth token. Research best practices for security and possible attack variants before continuing.
+        }
     }
 ?>
