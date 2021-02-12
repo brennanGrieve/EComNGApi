@@ -24,6 +24,8 @@
             $tokenStatement = $conn->prepare('UPDATE redacted SET redacted = ? WHERE redacted = ?');
             $tokenStatement->execute(array($newAuthToken, $user));
             //Encode auth token in JSON and echo it back to the client
+            $authJSON = json_encode($newAuthToken);
+            echo $authJSON;
         }
     }
 ?>
