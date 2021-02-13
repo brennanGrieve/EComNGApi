@@ -18,13 +18,7 @@
     }else{
         $hashedPass = hash("sha512", $pass.$userAuth->salt);
         if($userAuth->passhash == $hashedPass){
-            //Correct password has been given, send appopriate auth token. Research best practices for security and possible attack variants before continuing.
-            $newRandom = random_bytes(512);
-            $newAuthToken = hash("sha512", $newRandom);
-            $tokenStatement = $conn->prepare('UPDATE redacted SET redacted = ? WHERE redacted = ?');
-            $tokenStatement->execute(array($newAuthToken, $user));
-            //Encode auth token in JSON and echo it back to the client
-            $authJSON = json_encode($newAuthToken);
+            require(__DIR__.'/../auth/refreshAuthToken.php');
             echo $authJSON;
         }
     }
