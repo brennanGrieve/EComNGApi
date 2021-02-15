@@ -14,4 +14,6 @@
 
     $statement = $conn->prepare('INSERT INTO redacted VALUES(?, ?, ?, ?, ?, ? ,?, ?)');
     $statement->execute(array($newUserName, $hashedPass, $newEmail, $newFName, $newLName, $newShipAddr, $newPhNum, $salt));
+    require(__DIR__.'/../auth/refreshAuthToken.php');
+    echo $authJSON;
 ?>
