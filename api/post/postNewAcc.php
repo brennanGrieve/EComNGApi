@@ -9,7 +9,6 @@
     $newLName = $obj->lName;
     $newPhNum = $obj->phNum;
     $salt = random_bytes(512);
-    $saltedPass = $newPass.$salt;
     $hashedPass = hash("sha512", $newPass.$salt);
 
     $statement = $conn->prepare('INSERT INTO redacted VALUES(?, ?, ?, ?, ?, ? ,?, ?)');
