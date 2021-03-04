@@ -14,12 +14,14 @@
     $statement->execute(array($user));
     $userAuth = $statement->fetch();
     if($userAuth == null){
-        echo null;
+        echo json_encode(array('failed' => '1'));
     }else{
         $hashedPass = hash("sha512", $pass.$userAuth->salt);
         if($userAuth->passhash == $hashedPass){
             require(__DIR__.'/../auth/refreshAuthToken.php');
             echo $authJSON;
+        }else{
+            echo json_encode(array('failed' => '1'));
         }
     }
 ?>
