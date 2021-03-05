@@ -1,18 +1,9 @@
 <?php
     require(__DIR__.'/postConn.php');
     $obj = json_decode(file_get_contents('php://input'));
-    $newUserName = $obj->user;
-    $newPass = $obj->pass;
-    $newEmail = $obj->email;
-    $newShipAddr = $obj->shipAddr;
-    $newFName = $obj->fName;
-    $newLName = $obj->lName;
-    $newPhNum = $obj->phNum;
     $salt = random_bytes(512);
-    $hashedPass = hash("sha512", $newPass.$salt);
-
     $statement = $conn->prepare('INSERT INTO redacted VALUES(?, ?, ?, ?, ?, ? ,?, ?)');
-    $statement->execute(array($newUserName, $hashedPass, $newEmail, $newFName, $newLName, $newShipAddr, $newPhNum, $salt));
+    $statement->execute(array($obj->user, hash("sha512", $obj->pass.$salt), $obj->email, $obj->fName, $obj->lName, $obj->shipAddr, $obj->phNum, $salt));
     require(__DIR__.'/../auth/refreshAuthToken.php');
     echo $authJSON;
 ?>

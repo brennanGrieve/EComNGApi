@@ -8,16 +8,13 @@
      */
 
     $obj = json_decode(file_get_contents('php://input'));
-    $user = $obj->user;
-    $pass = $obj->pass;
     $statement = $conn->prepare('SELECT redacted, redacted FROM redacted WHERE redacted = ?');
-    $statement->execute(array($user));
+    $statement->execute(array($obj->user));
     $userAuth = $statement->fetch();
     if($userAuth == null){
         echo json_encode(array('failed' => '1'));
     }else{
-        $hashedPass = hash("sha512", $pass.$userAuth->salt);
-        if($userAuth->passhash == $hashedPass){
+        if($userAuth->passhash == hash("sha512", $obj->pass.$userAuth->salt)){
             require(__DIR__.'/../auth/refreshAuthToken.php');
             echo $authJSON;
         }else{
