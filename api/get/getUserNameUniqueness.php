@@ -1,6 +1,6 @@
 <?php
     require(__DIR__.'/getUserAccessConn.php');
-    $statement = $conn->prepare("SELECT redacted FROM redacted WHERE redacted = ?");
+    $statement = $conn->prepare("SELECT USER_NAME FROM UserAuthData WHERE USER_NAME = ?");
     $statement->execute(array($_GET["name"]));
     $data = $statement->fetchAll();
     require(__DIR__.'/parseOutput.php');
