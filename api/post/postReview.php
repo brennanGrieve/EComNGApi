@@ -9,5 +9,7 @@
     $obj = json_decode(file_get_contents('php://input'));
 
     $statement = $conn->prepare('INSERT INTO ItemReviews VALUES(?,?,?,?, curdate())');
-    $statement->execute(array($userName->USER_NAME, $obj[0], $obj[1], $obj[2]));
+    if($statement->execute(array($userName->USER_NAME, $obj[0], $obj[1], $obj[2]))){
+        echo json_encode(array("success" => "1"));
+   }
 ?>
