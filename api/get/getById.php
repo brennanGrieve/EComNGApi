@@ -6,7 +6,8 @@
         $increment = $conn->prepare('UPDATE Stock SET views = views + 1 WHERE id = ?');
         $increment->execute(array($toGrab));
     }
-    $statement = $conn->prepare('SELECT * FROM Stock WHERE id = ?');
+    $statement = $conn->prepare('SELECT Stock.id, name, price, stockLevel, shortDesc, longDesc, avg(score) FROM Stock INNER JOIN ItemReviews ON Stock.id = ItemReviews.id WHERE Stock.id = ?
+    ');
     $statement->execute(array($toGrab));
     $data = $statement->fetchAll();
     
